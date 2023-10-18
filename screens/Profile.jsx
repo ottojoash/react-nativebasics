@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const ProfileScreen = ({ navigation }) => {
   const handleLogout = () => {
@@ -8,11 +8,24 @@ const ProfileScreen = ({ navigation }) => {
     navigation.navigate('Login');
   };
 
+  // Dummy profile data
+  const profileData = {
+    name: 'John Doe',
+    username: 'johndoe123',
+    email: 'john@example.com',
+    // Add more profile data as needed
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
-        <Text style={styles.title}>Your Profile</Text>
-        <Text style={styles.text}>This is your profile page.</Text>
+        <Image
+          source={require('../assets/profile.jpg')} // Replace with the actual path to your image
+          style={styles.profileImage}
+        />
+        <Text style={styles.title}>{profileData.name}</Text>
+        <Text style={styles.text}>{profileData.username}</Text>
+        <Text style={styles.text}>{profileData.email}</Text>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -52,13 +65,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  profileImage: {
+    width: 100, // Adjust the image dimensions as needed
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 20,
+  },
   title: {
     fontSize: 24,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   text: {
     fontSize: 16,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   buttonContainer: {
     flexDirection: 'row',
