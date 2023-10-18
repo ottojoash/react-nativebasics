@@ -5,6 +5,7 @@ import LoginScreen from './screens/Login';
 import SignupScreen from './screens/Signup';
 import ProfileScreen from './screens/Profile';
 import HomeScreen from './screens/Home';
+import FeedScreen from './screens/Feed';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,11 @@ function App() {
           name="Home"
           component={HomeScreen}
           options={{title: 'Home'}}
+        />
+        <Stack.Screen
+          name="Feed"
+          component={FeedScreen}
+          options={{title: 'Feed'}}
         />
         {/* Add more screens as needed */}
       </Stack.Navigator>
