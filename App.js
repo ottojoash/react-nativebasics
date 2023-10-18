@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/Login';
 import SignupScreen from './screens/Signup';
+import ProfileScreen from './screens/Profile';
 import HomeScreen from './screens/Home';
 
 const Stack = createNativeStackNavigator();
@@ -22,9 +23,14 @@ function App() {
           options={{ title: 'Sign Up' }}
         />
         <Stack.Screen
+          name="Profile"
+          component={ProfileScreen} // Add the HomeScreen as a screen
+          options={{ title: 'Profile' }} // Customize the title as needed
+        />
+        <Stack.Screen
           name="Home"
-          component={HomeScreen} // Add the HomeScreen as a screen
-          options={{ title: 'Home' }} // Customize the title as needed
+          component={HomeScreen}
+          options={{title: 'Home'}}
         />
         {/* Add more screens as needed */}
       </Stack.Navigator>

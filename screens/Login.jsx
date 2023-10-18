@@ -12,7 +12,7 @@ const LoginScreen = () => {
     // You can perform validation and login actions
 
     // For now, let's just navigate to the home screen
-    navigation.navigate('Home');
+    navigation.navigate('Profile');
   };
 
   const navigateToSignup = () => {
