@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const SignupScreen = ({ navigation }) => {
+const SignupScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState();
+  const navigation = useNavigation();
 
   const handleSignup = () => {
     // Add your signup logic here
     // You can perform validation and registration actions
 
     // For now, let's just navigate to the login screen
+    navigation.navigate('Login');
+  };
+
+  const navigateToLogin = () => {
     navigation.navigate('Login');
   };
 
@@ -33,7 +39,20 @@ const SignupScreen = ({ navigation }) => {
         secureTextEntry
         onChangeText={text => setPassword(text)}
       />
-      <Button title="Sign Up" onPress={handleSignup} />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleSignup}
+        >
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={navigateToLogin}
+        >
+          <Text style={styles.buttonText}>Back to Login</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -57,6 +76,29 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     paddingHorizontal: 10,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  button: {
+    backgroundColor: 'blue',
+    padding: 15,
+    borderRadius: 6,
+    flex: 1,
+    marginRight: 10,
+  },
+  backButton: {
+    backgroundColor: 'gray',
+    padding: 15,
+    borderRadius: 6,
+    flex: 1,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });
 
