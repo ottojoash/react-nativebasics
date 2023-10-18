@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = () => {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState();
+  const navigation = useNavigation();
 
   const handleLogin = () => {
     // Add your login logic here
@@ -14,7 +16,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   const navigateToSignup = () => {
-    navigation.navigate('Signup'); // Navigate to the "Signup" screen
+    navigation.navigate('Signup');
   };
 
   return (
@@ -31,8 +33,20 @@ const LoginScreen = ({ navigation }) => {
         secureTextEntry
         onChangeText={text => setPassword(text)}
       />
-      <Button title="Login" onPress={handleLogin} />
-      <Button title="Sign Up" onPress={navigateToSignup} />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleLogin}
+        >
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.signupButton}
+          onPress={navigateToSignup}
+        >
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -56,6 +70,29 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     paddingHorizontal: 10,
+  },
+  buttonContainer: {
+    flexDirection: 'row', // Display buttons side by side
+    justifyContent: 'space-between', // Add space between the buttons
+    width: '100%', // Take up the full width
+  },
+  button: {
+    backgroundColor: 'blue',
+    padding: 15,
+    borderRadius: 6,
+    flex: 1, // Make the buttons take up equal space
+    marginRight: 10, // Add some spacing between buttons
+  },
+  signupButton: {
+    backgroundColor: 'green',
+    padding: 15,
+    borderRadius: 6,
+    flex: 1,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });
 
